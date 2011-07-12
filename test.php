@@ -1,4 +1,2 @@
 <<<<<<< HEAD
-<? echo "my first file123- - - - -"; ?>
-
-
+<? echo "my second file123- - - - -"; ?>
