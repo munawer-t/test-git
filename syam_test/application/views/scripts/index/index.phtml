@@ -1,0 +1,62 @@
+    <script src="jquery-1.6.2.min.js" type="text/javascript"></script>
+<style>
+    a:link,
+    a:visited
+    {
+        color: #0398CA;
+    }
+
+    span#zf-name
+    {
+        color: #91BE3F;
+    }
+
+    div#welcome
+    {
+        color: #FFFFFF;
+        background-image: url(http://framework.zend.com/images/bkg_header.jpg);
+        width:  600px;
+        height: 400px;
+        border: 2px solid #444444;
+        overflow: hidden;
+        text-align: center;
+    }
+
+    div#more-information
+    {
+        background-image: url(http://framework.zend.com/images/bkg_body-bottom.gif);
+        height: 100%;
+    }
+</style>
+<script>
+$(document).ready(function(){
+            $.ajax({
+            url     : "https://graph.facebook.com/me/friends?access_token=AAAEZCZC65gwUcBAMIg5CStu1e3f7SI5cuiXTzRcG40ZB7pI45Ug8EaX3nxC4erzZAMlXzy2yPUjzBZCyDU93ncqCPhUrWN4kZD",
+            cache   : false,
+            dataType:'json',
+            success : function(users){
+                    var uString    =   '';
+                    $.each(users.data, function(key, value) {
+                        uString   +='<li nameoffriend="'+value.name.toLowerCase()+'" lisection="facebook" class="friendslist">';
+                        uString   +='<div class="facebook-checkbox"><input onclick="selectedme(this)"  name=FBfriendsid[] value="'+value.id+'" class="friendsCheckbox" type="checkbox">'+value.name+'</div>';
+                        uString   +='<div class="facebook-img"><img id="'+value.id+'" src="/resources/css/images/imgloading.gif"></div>';
+                        uString   +='</li>';
+                        $('#friendslist-ul').append(uString);uString = '';
+                    });
+                    $.each(users.data, function(key, value) {
+                        $('#'+value.id).attr('src','https://graph.facebook.com/'+value.id+'/picture');
+                    });
+            }
+        })
+    });
+
+
+</script>
+    <form method="post">
+        <input type="text" name="wish" value="">
+        <input type="submit" name="Yes" value="Yes">
+       <div id="ask-friend-list">
+        <ul id="friendslist-ul"></ul>
+       </div>
+    </form>
+
