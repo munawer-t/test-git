@@ -1,4 +1,8 @@
-<<<<<<< HEAD
-<? echo "my first file123- dsfdsf- - - -"; ?>
+
+<? echo "my first file123- dsfdsf- - - -"; 
+echo "first";
+?>
+
+
 
 
